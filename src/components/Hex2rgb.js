@@ -9,9 +9,9 @@ function Hex2rgb() {
 
     const number = num => {
         if (num.length == 7) {
-            console.log(num);
+         
             var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(num);
-            console.log(result);
+         
             if (result) {
                 setForm((prevForm) => ({...prevForm, rgb : 'rgb(' + parseInt(result[1], 16) + ',' + parseInt(result[2], 16) + ',' + parseInt(result[3], 16) + ')'}));  
             } else {
@@ -23,31 +23,23 @@ function Hex2rgb() {
     const handleFormChange = (evt) => {
         const {name, value} = evt.target;
         setForm((prevForm) => ({...prevForm, [name] : value}));
-        console.log(value.length);
-        number(value)
+        number(value);
     }
-  /* 
-  onSubmit={handleSubmit}
-  const handleSubmit = (evt) => {
-         evt.preventDefault();
-               
-         
-         setForm({hex: "",
-                 rgb: ""})
-    };*/
-
- /* <button className="spanLi">ОК</button>*/
-
+    
+   //rgb(52,73,94)
    return (
-    <div>
+    <div style={{backgroundColor: form.rgb}}>
+        <div className="contener">
         <form >
-           
-                        
-            <input maxLength="7" className="input" type="text" name="hex" value={form.hex} onChange={handleFormChange} />
-            <input className="input" type="text" name="rgb" value={form.rgb} onChange={handleFormChange} />
-            
+            <div >             
+               <input color="read" maxLength="7" className="input" type="text" name="hex" value={form.hex} onChange={handleFormChange} />
+            </div> 
+            <div>
+               <input readOnly className="input" type="text" name="rgb" value={form.rgb} onChange={handleFormChange} />
+            </div>
            
         </form>
+        </div>
       
     </div>
    )
